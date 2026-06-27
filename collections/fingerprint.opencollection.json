@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fingerprint Server API",
+    "version": "3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "Auth-API-Key",
+        "value": "{{apiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get event by request ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fpjs.io/events/{request_id}"
+          },
+          "docs": "Get a detailed analysis of an individual identification event, including Smart Signals."
+        },
+        {
+          "info": {
+            "name": "Update an event with a given request ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.fpjs.io/events/{request_id}",
+            "body": {
+              "type": "json",
+              "data": "{\"linkedId\":\"\",\"suspect\":false}"
+            }
+          },
+          "docs": "Update an event with a linkedId, tags, or a suspect flag."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Event Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get events via search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fpjs.io/events/search?limit=10"
+          },
+          "docs": "Search identification events with filters - visitor_id, bot, ip_address, linked_id, start, end, suspect, vpn - and cursor pagination."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Visitors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get visits by visitor ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fpjs.io/visitors/{visitor_id}?limit=10"
+          },
+          "docs": "Get the visit history for a visitorId."
+        },
+        {
+          "info": {
+            "name": "Delete data by visitor ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.fpjs.io/visitors/{visitor_id}"
+          },
+          "docs": "Delete all data associated with a visitorId (privacy / data-subject requests)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Related Visitors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get related visitors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fpjs.io/related-visitors?visitor_id="
+          },
+          "docs": "Get visitorIds likely belonging to the same person."
+        }
+      ]
+    }
+  ]
+}

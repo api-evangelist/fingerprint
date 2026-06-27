@@ -1,0 +1,65 @@
+aid: fingerprint
+name: Fingerprint
+review:
+  question: Does Fingerprint expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-25'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Fingerprint's only asynchronous,
+    server-push surface is HTTP Webhooks: when configured, Fingerprint POSTs an
+    identification event (the same payload as the Server API events endpoint) to
+    a customer-provided HTTPS endpoint. Webhooks are request/response HTTP, not a
+    streaming protocol, and no SSE or WebSocket stream is documented.
+findings:
+  summary: |
+    Fingerprint does not publish a documented public WebSocket API. The
+    Fingerprint Server API is REST over HTTPS, served from regional hosts
+    (https://api.fpjs.io, https://eu.api.fpjs.io, https://ap.api.fpjs.io) and
+    authenticated with the Auth-API-Key header (or an api_key query parameter).
+    Asynchronous delivery is offered via HTTP Webhooks that POST identification
+    events to a configured endpoint. No realtime, bidirectional WebSocket
+    (ws:// or wss://) endpoint is documented for events, visitors, or Smart
+    Signals.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.fpjs.io
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: Fingerprint POSTs identification events to a customer-configured HTTPS endpoint. One-way HTTP callback, not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Fingerprint's Server API reference or product docs as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.fpjs.io/events/{request_id}
+    - PUT    https://api.fpjs.io/events/{request_id}
+    - GET    https://api.fpjs.io/events/search
+    - GET    https://api.fpjs.io/visitors/{visitor_id}
+    - DELETE https://api.fpjs.io/visitors/{visitor_id}
+    - GET    https://api.fpjs.io/related-visitors
+sources:
+  - url: https://dev.fingerprint.com/docs/server-api
+    type: Documentation
+    note: Server API overview lists REST base URLs and Auth-API-Key header; no WebSocket mentioned.
+  - url: https://dev.fingerprint.com/reference/getevent
+    type: APIReference
+    note: All documented Server API endpoints are HTTPS REST.
+  - url: https://dev.fingerprint.com/docs/webhooks
+    type: Documentation
+    note: Webhooks POST event payloads to a configured HTTPS endpoint; one-way HTTP callback, not WebSocket.
+  - url: https://github.com/fingerprintjs/fingerprint-pro-server-api-openapi
+    type: OpenAPI
+    note: Official OpenAPI schemas confirm REST paths and the Auth-API-Key apiKey security scheme.
+actions:
+  asyncapiPath: ''
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE streaming surface exists. The only asynchronous
+    mechanism is HTTP Webhooks, which is request/response HTTP rather than a
+    streaming transport, so no AsyncAPI document was authored. Webhooks are
+    represented as an API entry in apis.yml.

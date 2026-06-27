@@ -1,0 +1,186 @@
+aid: fingerprint
+url: https://raw.githubusercontent.com/api-evangelist/fingerprint/refs/heads/main/apis.yml
+name: Fingerprint
+kind: company
+description: Fingerprint (formerly FingerprintJS) is a device-identification and fraud-prevention
+  platform. Its browser and mobile agents generate a stable visitorId, and the Server
+  API returns detailed identification events enriched with Smart Signals (bot, VPN,
+  proxy, tampering, emulator, and more) for account takeover, payment fraud, and
+  bot-mitigation use cases.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Device Identification
+- Fraud Prevention
+- Bot Detection
+- Smart Signals
+- Identity
+created: '2026-06-25'
+modified: '2026-06-25'
+specificationVersion: '0.19'
+apis:
+- aid: fingerprint:fingerprint-events-api
+  name: Fingerprint Events API
+  tags:
+  - Events
+  - Identification
+  - Smart Signals
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.fingerprint.com/reference/getevent
+  baseURL: https://api.fpjs.io
+  properties:
+  - url: https://dev.fingerprint.com/docs/server-api
+    type: Documentation
+  - url: https://dev.fingerprint.com/reference/getevent
+    type: APIReference
+  - url: openapi/fingerprint-openapi.yml
+    type: OpenAPI
+  - url: collections/fingerprint.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fingerprint.opencollection.json
+    type: OpenCollection
+  description: Retrieve and update the complete identification event for a single requestId,
+    including device attributes and all enabled Smart Signals. Authenticated with the
+    Auth-API-Key header.
+- aid: fingerprint:fingerprint-events-search-api
+  name: Fingerprint Events Search API
+  tags:
+  - Events
+  - Search
+  - Filtering
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.fingerprint.com/reference/searchevents
+  baseURL: https://api.fpjs.io
+  properties:
+  - url: https://dev.fingerprint.com/reference/searchevents
+    type: APIReference
+  - url: openapi/fingerprint-openapi.yml
+    type: OpenAPI
+  - url: collections/fingerprint.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fingerprint.opencollection.json
+    type: OpenCollection
+  description: Query identification events for a workspace using a wide range of filters
+    - visitorId, linkedId, bot, IP address, time range, suspect, and individual Smart
+    Signal flags - with cursor pagination.
+- aid: fingerprint:fingerprint-visitors-api
+  name: Fingerprint Visitors API
+  tags:
+  - Visitors
+  - History
+  - Identity
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.fingerprint.com/reference/getvisits
+  baseURL: https://api.fpjs.io
+  properties:
+  - url: https://dev.fingerprint.com/reference/getvisits
+    type: APIReference
+  - url: openapi/fingerprint-openapi.yml
+    type: OpenAPI
+  - url: collections/fingerprint.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fingerprint.opencollection.json
+    type: OpenCollection
+  description: Retrieve the visit history for a given visitorId with pagination and
+    time-range filtering, and delete all data associated with a visitorId for privacy
+    and data-subject requests.
+- aid: fingerprint:fingerprint-related-visitors-api
+  name: Fingerprint Related Visitors API
+  tags:
+  - Related Visitors
+  - Linking
+  - Identity
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.fingerprint.com/reference/getrelatedvisitors
+  baseURL: https://api.fpjs.io
+  properties:
+  - url: https://dev.fingerprint.com/reference/getrelatedvisitors
+    type: APIReference
+  - url: openapi/fingerprint-openapi.yml
+    type: OpenAPI
+  - url: collections/fingerprint.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fingerprint.opencollection.json
+    type: OpenCollection
+  description: Find other visitorIds that likely belong to the same person across browsers
+    and incognito sessions, supporting linked-identity and account-sharing detection.
+- aid: fingerprint:fingerprint-smart-signals-api
+  name: Fingerprint Smart Signals API
+  tags:
+  - Smart Signals
+  - Bot Detection
+  - VPN
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.fingerprint.com/docs/smart-signals-overview
+  baseURL: https://api.fpjs.io
+  properties:
+  - url: https://dev.fingerprint.com/docs/smart-signals-overview
+    type: Documentation
+  - url: openapi/fingerprint-openapi.yml
+    type: OpenAPI
+  - url: collections/fingerprint.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fingerprint.opencollection.json
+    type: OpenCollection
+  description: Risk signals returned inside identification events - bot detection, VPN,
+    proxy, Tor, IP blocklist, tampering, virtual machine, incognito, emulator, root,
+    jailbreak, Frida, cloned app, factory reset, and velocity - for fraud and abuse
+    decisioning.
+- aid: fingerprint:fingerprint-webhooks
+  name: Fingerprint Webhooks
+  tags:
+  - Webhooks
+  - Events
+  - Streaming
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.fingerprint.com/docs/webhooks
+  baseURL: https://api.fpjs.io
+  properties:
+  - url: https://dev.fingerprint.com/docs/webhooks
+    type: Documentation
+  - url: openapi/fingerprint-openapi.yml
+    type: OpenAPI
+  - url: collections/fingerprint.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fingerprint.opencollection.json
+    type: OpenCollection
+  description: Receive identification events at a configured HTTPS endpoint as they happen,
+    carrying the same payload as the Events API for asynchronous server-side processing.
+- aid: fingerprint:fingerprint-sealed-results
+  name: Fingerprint Sealed Results
+  tags:
+  - Sealed Results
+  - Encryption
+  - Identification
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.fingerprint.com/docs/sealed-client-results
+  baseURL: https://api.fpjs.io
+  properties:
+  - url: https://dev.fingerprint.com/docs/sealed-client-results
+    type: Documentation
+  - url: openapi/fingerprint-openapi.yml
+    type: OpenAPI
+  - url: collections/fingerprint.postman_collection.json
+    type: PostmanCollection
+  - url: collections/fingerprint.opencollection.json
+    type: OpenCollection
+  description: Decrypt sealed identification results delivered directly to the client and
+    forwarded to your server, eliminating an extra Server API round-trip while keeping
+    the full event payload server-validated.
+common:
+- type: GitHubOrganization
+  url: https://github.com/fingerprintjs
+- type: LinkedIn
+  url: https://www.linkedin.com/company/fingerprintjs
+- type: Website
+  url: https://fingerprint.com
+- type: Documentation
+  url: https://dev.fingerprint.com/docs
+- type: Plans
+  url: plans/fingerprint-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/fingerprint-rate-limits.yml
+- type: FinOps
+  url: finops/fingerprint-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

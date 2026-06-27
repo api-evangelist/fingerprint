@@ -1,0 +1,107 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Fingerprint
+providerId: fingerprint
+created: '2026-06-25'
+modified: '2026-06-25'
+reconciled: false
+tags:
+- Device Identification
+- Fraud Prevention
+- Bot Detection
+- Smart Signals
+- Identity
+- Plans
+description: >-
+  Fingerprint uses usage-based pricing metered by API calls (identification
+  events). A free tier covers low-volume use, the self-serve Pro Plus plan
+  bundles a monthly allotment of API calls with overage pricing, and Enterprise
+  is custom. Smart Signals and platform coverage (web, iOS, Android) are
+  included according to plan. Specific included volumes and overage rates change
+  frequently and are not fully reconciled in this artifact.
+notes: >-
+  Representative figures as published on the Fingerprint pricing page; verify
+  current included volumes, overage rates, and feature gating during
+  reconciliation.
+sources:
+- https://fingerprint.com/pricing/
+- https://dev.fingerprint.com/docs/billing
+plans:
+- id: fingerprint-free
+  name: Free
+  type: free
+  description: >-
+    Free tier for low-volume device identification on web and mobile, with a
+    14-day unlimited Pro Plus trial on signup.
+  entries:
+  - label: Free API Calls
+    name: free_api_calls
+    type: usage
+    metric: api_calls
+    limit: 1000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  elements:
+  - name: Device Identification
+  - name: Smart Signals
+- id: fingerprint-pro-plus
+  name: Pro Plus
+  type: paid
+  description: >-
+    Self-serve plan bundling a monthly allotment of API calls with metered
+    overage, full Smart Signals, and web, iOS, and Android coverage.
+  entries:
+  - label: Included Web / iOS API Calls
+    name: included_api_calls
+    type: flat
+    metric: api_calls
+    limit: 20000
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $99 per month
+    userMultiplied: false
+  - label: Overage API Calls
+    name: overage_api_calls
+    type: usage
+    metric: api_calls
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1000
+    price: $4 per 1,000 additional API calls
+    userMultiplied: false
+  elements:
+  - name: Fingerprint Identification
+  - name: Smart Signals
+  - name: Android & iOS Smart Signals
+- id: fingerprint-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom volume pricing with all Smart Signals, uptime SLA, advanced
+    compliance, proxy integrations, longer data retention, SAML SSO, and a
+    dedicated customer success manager. Contact Fingerprint sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: All Smart Signals
+  - name: Uptime SLA
+  - name: SAML SSO & Premium Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

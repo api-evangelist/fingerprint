@@ -1,0 +1,174 @@
+{
+  "info": {
+    "name": "Fingerprint Server API",
+    "description": "Fingerprint Server API - get, search, update, and delete identification Events and Visitors, enriched with Smart Signals. Authenticated with the Auth-API-Key header.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.fpjs.io"
+    },
+    {
+      "key": "apiKey",
+      "value": ""
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "Auth-API-Key" },
+      { "key": "value", "value": "{{apiKey}}" },
+      { "key": "in", "value": "header" }
+    ]
+  },
+  "item": [
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "Get event by request ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Auth-API-Key", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/events/:request_id",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "events", ":request_id" ],
+              "variable": [
+                { "key": "request_id", "value": "" }
+              ]
+            },
+            "description": "Get a detailed analysis of an individual identification event, including Smart Signals."
+          }
+        },
+        {
+          "name": "Update an event with a given request ID",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Auth-API-Key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"linkedId\": \"\",\n  \"suspect\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/events/:request_id",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "events", ":request_id" ],
+              "variable": [
+                { "key": "request_id", "value": "" }
+              ]
+            },
+            "description": "Update an event with a linkedId, tags, or a suspect flag."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Event Search",
+      "item": [
+        {
+          "name": "Get events via search",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Auth-API-Key", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/events/search?limit=10",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "events", "search" ],
+              "query": [
+                { "key": "limit", "value": "10" },
+                { "key": "visitor_id", "value": "", "disabled": true },
+                { "key": "bot", "value": "", "disabled": true },
+                { "key": "ip_address", "value": "", "disabled": true },
+                { "key": "linked_id", "value": "", "disabled": true },
+                { "key": "start", "value": "", "disabled": true },
+                { "key": "end", "value": "", "disabled": true },
+                { "key": "suspect", "value": "", "disabled": true },
+                { "key": "vpn", "value": "", "disabled": true },
+                { "key": "pagination_key", "value": "", "disabled": true }
+              ]
+            },
+            "description": "Search identification events with filters and cursor pagination."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Visitors",
+      "item": [
+        {
+          "name": "Get visits by visitor ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Auth-API-Key", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/visitors/:visitor_id?limit=10",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "visitors", ":visitor_id" ],
+              "query": [
+                { "key": "limit", "value": "10" },
+                { "key": "pagination_key", "value": "", "disabled": true },
+                { "key": "linked_id", "value": "", "disabled": true }
+              ],
+              "variable": [
+                { "key": "visitor_id", "value": "" }
+              ]
+            },
+            "description": "Get the visit history for a visitorId."
+          }
+        },
+        {
+          "name": "Delete data by visitor ID",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Auth-API-Key", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/visitors/:visitor_id",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "visitors", ":visitor_id" ],
+              "variable": [
+                { "key": "visitor_id", "value": "" }
+              ]
+            },
+            "description": "Delete all data associated with a visitorId (privacy / data-subject requests)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Related Visitors",
+      "item": [
+        {
+          "name": "Get related visitors",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Auth-API-Key", "value": "{{apiKey}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/related-visitors?visitor_id=",
+              "host": [ "{{baseUrl}}" ],
+              "path": [ "related-visitors" ],
+              "query": [
+                { "key": "visitor_id", "value": "" }
+              ]
+            },
+            "description": "Get visitorIds likely belonging to the same person."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Fingerprint
+providerId: fingerprint
+created: '2026-06-25'
+modified: '2026-06-25'
+reconciled: false
+tags:
+- Device Identification
+- Fraud Prevention
+- Bot Detection
+- Smart Signals
+- Identity
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Fingerprint Server API enforces per-workspace rate limits expressed as
+  requests per second (RPS). Exceeding the limit returns HTTP 429 with a
+  Retry-After header. Limits vary by plan, and the client-side identification
+  agent has separate throttling. Specific per-plan RPS values are not reconciled
+  in this artifact.
+notes: >-
+  Verify the current Server API requests-per-second limits and any per-endpoint
+  quotas in the Fingerprint documentation during reconciliation; values vary by
+  plan and may change.
+sources:
+- https://dev.fingerprint.com/docs/server-api
+- https://fingerprint.com/pricing/
+responseCodes:
+  throttled: 429
+limits:
+- name: Server API Requests Per Second (RPS)
+  scope: workspace
+  metric: requests
+  limit: see provider documentation
+  notes: Per-workspace RPS limit on the Server API; varies by plan.
+- name: Identification Agent Requests
+  scope: workspace
+  metric: requests
+  limit: see provider documentation
+  notes: Client-side identification calls are subject to separate throttling and abuse protection.
+policies:
+- name: Tiered Limits
+  description: Limits scale by plan; higher RPS and volume available on Enterprise agreements.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor the Retry-After header on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
