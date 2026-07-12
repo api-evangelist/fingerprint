@@ -167,6 +167,12 @@ apis:
     forwarded to your server, eliminating an extra Server API round-trip while keeping
     the full event payload server-validated.
 common:
+- type: TrustCenter
+  url: security/fingerprint-trust-center.yml
+- type: DomainSecurity
+  url: security/fingerprint-domain-security.yml
+- type: Authentication
+  url: authentication/fingerprint-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/fingerprintjs
 - type: LinkedIn
@@ -181,6 +187,8 @@ common:
   url: rate-limits/fingerprint-rate-limits.yml
 - type: FinOps
   url: finops/fingerprint-finops.yml
+- url: https://fingerprint.com/rss.xml
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

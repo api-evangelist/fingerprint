@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/fingerprint-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  - query
+schemes:
+- name: ApiKeyHeader
+  type: apiKey
+  in: header
+  parameter: Auth-API-Key
+  sources:
+  - openapi/fingerprint-openapi.yml
+- name: ApiKeyQuery
+  type: apiKey
+  in: query
+  parameter: api_key
+  sources:
+  - openapi/fingerprint-openapi.yml
