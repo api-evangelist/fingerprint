@@ -167,6 +167,8 @@ apis:
     forwarded to your server, eliminating an extra Server API round-trip while keeping
     the full event payload server-validated.
 common:
+- type: AgenticAccess
+  url: agentic-access/fingerprint-agentic-access.yml
 - type: TrustCenter
   url: security/fingerprint-trust-center.yml
 - type: DomainSecurity
