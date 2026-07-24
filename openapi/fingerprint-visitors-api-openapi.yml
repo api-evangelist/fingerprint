@@ -1,0 +1,178 @@
+openapi: 3.0.1
+info:
+  title: Fingerprint Server Event Search Visitors API
+  description: The Fingerprint Server API lets you get, search, update, and delete identification Events and Visitors in a server environment. Each event carries device attributes and the enabled Smart Signals (bot, VPN, proxy, Tor, IP blocklist, tampering, virtual machine, incognito, emulator, root, jailbreak, Frida, cloned app, factory reset, velocity). Requests are authenticated with the `Auth-API-Key` header carrying your workspace Secret API Key. The API is served from regional hosts; use the host that matches your workspace region (Global, EU, or Asia). The product also exposes a Related Visitors endpoint and Webhooks that POST the same event payload to a configured endpoint.
+  termsOfService: https://fingerprint.com/terms-conditions/
+  contact:
+    name: Fingerprint Support
+    email: support@fingerprint.com
+  license:
+    name: MIT
+    url: https://github.com/fingerprintjs/fingerprint-pro-server-api-openapi/blob/main/LICENSE
+  version: '3'
+servers:
+- url: https://api.fpjs.io
+  description: Global
+- url: https://eu.api.fpjs.io
+  description: EU
+- url: https://ap.api.fpjs.io
+  description: Asia (Mumbai)
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+tags:
+- name: Visitors
+  description: Get visit history and delete visitor data.
+paths:
+  /visitors/{visitor_id}:
+    get:
+      tags:
+      - Visitors
+      operationId: getVisits
+      summary: Get visits by visitor ID
+      description: Get the visit history for a single visitorId, with pagination and time-range filtering.
+      parameters:
+      - name: visitor_id
+        in: path
+        required: true
+        description: Unique identifier of the visitor.
+        schema:
+          type: string
+      - name: request_id
+        in: query
+        description: Filter visits by a single requestId.
+        schema:
+          type: string
+      - name: linked_id
+        in: query
+        description: Filter visits by linkedId.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Limit the number of visits returned.
+        schema:
+          type: integer
+          format: int32
+      - name: pagination_key
+        in: query
+        description: Cursor used to fetch the next page of visits.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+        '403':
+          description: Forbidden - invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Visitor not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+      - Visitors
+      operationId: deleteVisitorData
+      summary: Delete data by visitor ID
+      description: Delete all data associated with the specified visitorId. Used for privacy and data-subject (GDPR/CCPA) deletion requests. The deletion is asynchronous and irreversible.
+      parameters:
+      - name: visitor_id
+        in: path
+        required: true
+        description: Unique identifier of the visitor whose data should be deleted.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK. Deletion request accepted.
+        '403':
+          description: Forbidden - invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Visitor not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Response:
+      type: object
+      properties:
+        visitorId:
+          type: string
+        visits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Visit'
+        lastTimestamp:
+          type: integer
+          format: int64
+        paginationKey:
+          type: string
+    Visit:
+      type: object
+      properties:
+        requestId:
+          type: string
+        incognito:
+          type: boolean
+        linkedId:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+        time:
+          type: string
+          format: date-time
+        url:
+          type: string
+        ip:
+          type: string
+        confidence:
+          $ref: '#/components/schemas/Confidence'
+        visitorFound:
+          type: boolean
+    Confidence:
+      type: object
+      properties:
+        score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+    ErrorResponse:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
+            message:
+              type: string
+              description: Human-readable error message.
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: Auth-API-Key
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key

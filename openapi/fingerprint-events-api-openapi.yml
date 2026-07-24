@@ -1,0 +1,234 @@
+openapi: 3.0.1
+info:
+  title: Fingerprint Server Event Search Events API
+  description: The Fingerprint Server API lets you get, search, update, and delete identification Events and Visitors in a server environment. Each event carries device attributes and the enabled Smart Signals (bot, VPN, proxy, Tor, IP blocklist, tampering, virtual machine, incognito, emulator, root, jailbreak, Frida, cloned app, factory reset, velocity). Requests are authenticated with the `Auth-API-Key` header carrying your workspace Secret API Key. The API is served from regional hosts; use the host that matches your workspace region (Global, EU, or Asia). The product also exposes a Related Visitors endpoint and Webhooks that POST the same event payload to a configured endpoint.
+  termsOfService: https://fingerprint.com/terms-conditions/
+  contact:
+    name: Fingerprint Support
+    email: support@fingerprint.com
+  license:
+    name: MIT
+    url: https://github.com/fingerprintjs/fingerprint-pro-server-api-openapi/blob/main/LICENSE
+  version: '3'
+servers:
+- url: https://api.fpjs.io
+  description: Global
+- url: https://eu.api.fpjs.io
+  description: EU
+- url: https://ap.api.fpjs.io
+  description: Asia (Mumbai)
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+tags:
+- name: Events
+  description: Get and update individual identification events.
+paths:
+  /events/{request_id}:
+    get:
+      tags:
+      - Events
+      operationId: getEvent
+      summary: Get event by request ID
+      description: Get a detailed analysis of an individual identification event, including all Smart Signals enabled for your workspace.
+      parameters:
+      - name: request_id
+        in: path
+        required: true
+        description: The unique identifier (requestId) of the identification event.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsGetResponse'
+        '403':
+          description: Forbidden - invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Event not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+      - Events
+      operationId: updateEvent
+      summary: Update an event with a given request ID
+      description: Update an event with a linkedId, one or more tags, or a suspect flag to support your decision-making and labeling workflows.
+      parameters:
+      - name: request_id
+        in: path
+        required: true
+        description: The unique identifier (requestId) of the identification event.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventUpdateRequest'
+      responses:
+        '200':
+          description: OK. Event updated.
+        '403':
+          description: Forbidden - invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Event not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
+            message:
+              type: string
+              description: Human-readable error message.
+    EventUpdateRequest:
+      type: object
+      properties:
+        linkedId:
+          type: string
+        tag:
+          type: object
+          additionalProperties: true
+        suspect:
+          type: boolean
+    Products:
+      type: object
+      description: Container for identification and Smart Signal product results.
+      properties:
+        identification:
+          $ref: '#/components/schemas/SignalResponseIdentification'
+        botd:
+          $ref: '#/components/schemas/SignalResponseBotd'
+        ipInfo:
+          type: object
+        incognito:
+          type: object
+        vpn:
+          type: object
+        proxy:
+          type: object
+        tor:
+          type: object
+        tampering:
+          type: object
+        virtualMachine:
+          type: object
+        emulator:
+          type: object
+        velocity:
+          type: object
+    BrowserDetails:
+      type: object
+      properties:
+        browserName:
+          type: string
+        browserMajorVersion:
+          type: string
+        browserFullVersion:
+          type: string
+        os:
+          type: string
+        osVersion:
+          type: string
+        device:
+          type: string
+        userAgent:
+          type: string
+    Confidence:
+      type: object
+      properties:
+        score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+    EventsGetResponse:
+      type: object
+      properties:
+        products:
+          $ref: '#/components/schemas/Products'
+    SignalResponseIdentification:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Identification'
+    SignalResponseBotd:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            bot:
+              type: object
+              properties:
+                result:
+                  type: string
+                  enum:
+                  - notDetected
+                  - good
+                  - bad
+    Identification:
+      type: object
+      properties:
+        visitorId:
+          type: string
+          description: Stable unique identifier for the visitor.
+        requestId:
+          type: string
+          description: Unique identifier of the identification event.
+        linkedId:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+          description: Time of the event as a Unix epoch (ms).
+        time:
+          type: string
+          format: date-time
+        url:
+          type: string
+        ip:
+          type: string
+        confidence:
+          $ref: '#/components/schemas/Confidence'
+        visitorFound:
+          type: boolean
+        incognito:
+          type: boolean
+        browserDetails:
+          $ref: '#/components/schemas/BrowserDetails'
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: Auth-API-Key
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key

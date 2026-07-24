@@ -1,0 +1,88 @@
+openapi: 3.0.1
+info:
+  title: Fingerprint Server Event Search Related Visitors API
+  description: The Fingerprint Server API lets you get, search, update, and delete identification Events and Visitors in a server environment. Each event carries device attributes and the enabled Smart Signals (bot, VPN, proxy, Tor, IP blocklist, tampering, virtual machine, incognito, emulator, root, jailbreak, Frida, cloned app, factory reset, velocity). Requests are authenticated with the `Auth-API-Key` header carrying your workspace Secret API Key. The API is served from regional hosts; use the host that matches your workspace region (Global, EU, or Asia). The product also exposes a Related Visitors endpoint and Webhooks that POST the same event payload to a configured endpoint.
+  termsOfService: https://fingerprint.com/terms-conditions/
+  contact:
+    name: Fingerprint Support
+    email: support@fingerprint.com
+  license:
+    name: MIT
+    url: https://github.com/fingerprintjs/fingerprint-pro-server-api-openapi/blob/main/LICENSE
+  version: '3'
+servers:
+- url: https://api.fpjs.io
+  description: Global
+- url: https://eu.api.fpjs.io
+  description: EU
+- url: https://ap.api.fpjs.io
+  description: Asia (Mumbai)
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+tags:
+- name: Related Visitors
+  description: Find visitorIds likely belonging to the same person.
+paths:
+  /related-visitors:
+    get:
+      tags:
+      - Related Visitors
+      operationId: getRelatedVisitors
+      summary: Get related visitors
+      description: Get a list of visitorIds that are likely to belong to the same person as the provided visitorId, across browsers and incognito sessions.
+      parameters:
+      - name: visitor_id
+        in: query
+        required: true
+        description: The visitorId for which related visitors are requested.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelatedVisitorsResponse'
+        '403':
+          description: Forbidden - invalid or missing API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
+            message:
+              type: string
+              description: Human-readable error message.
+    RelatedVisitorsResponse:
+      type: object
+      properties:
+        relatedVisitors:
+          type: array
+          items:
+            type: object
+            properties:
+              visitorId:
+                type: string
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: Auth-API-Key
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
