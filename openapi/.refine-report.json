@@ -1,0 +1,20 @@
+{
+  "provider": "fingerprint",
+  "sources": [
+    "fingerprint-event-search-api-openapi.yml",
+    "fingerprint-events-api-openapi.yml",
+    "fingerprint-related-visitors-api-openapi.yml",
+    "fingerprint-visitors-api-openapi.yml"
+  ],
+  "outputs": [
+    "fingerprint-event-search-api-openapi.yml",
+    "fingerprint-events-api-openapi.yml",
+    "fingerprint-related-visitors-api-openapi.yml",
+    "fingerprint-visitors-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
