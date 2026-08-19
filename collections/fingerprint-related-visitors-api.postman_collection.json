@@ -1,0 +1,187 @@
+{
+  "item": [
+    {
+      "id": "a807865d-6752-46aa-b76c-0ea5220977bf",
+      "name": "Related Visitors",
+      "description": {
+        "content": "Find visitorIds likely belonging to the same person.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "639041d0-8f71-41d3-9a4d-313fd8a22cf2",
+          "name": "Get related visitors",
+          "request": {
+            "name": "Get related visitors",
+            "description": {
+              "content": "Get a list of visitorIds that are likely to belong to the same person as the provided visitorId, across browsers and incognito sessions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "related-visitors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "visitor_id",
+                  "value": "<string>",
+                  "description": "(Required) The visitorId for which related visitors are requested."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4d9de28-d72d-4201-ac66-591196b9551b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "related-visitors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "visitor_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Auth-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"relatedVisitors\": [\n    {\n      \"visitorId\": \"string\"\n    },\n    {\n      \"visitorId\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db77bd30-e762-4931-9065-10daf05db32b",
+              "name": "Forbidden - invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "related-visitors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "visitor_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Auth-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fpjs.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Auth-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c977e875-3ada-4b45-82d0-4dd317d73ccf",
+    "name": "Fingerprint Server Event Search Related Visitors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Fingerprint Server API lets you get, search, update, and delete identification Events and Visitors in a server environment. Each event carries device attributes and the enabled Smart Signals (bot, VPN, proxy, Tor, IP blocklist, tampering, virtual machine, incognito, emulator, root, jailbreak, Frida, cloned app, factory reset, velocity). Requests are authenticated with the `Auth-API-Key` header carrying your workspace Secret API Key. The API is served from regional hosts; use the host that matches your workspace region (Global, EU, or Asia). The product also exposes a Related Visitors endpoint and Webhooks that POST the same event payload to a configured endpoint.\n\nContact Support:\n Name: Fingerprint Support\n Email: support@fingerprint.com",
+      "type": "text/plain"
+    }
+  }
+}

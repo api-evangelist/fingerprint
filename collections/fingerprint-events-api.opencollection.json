@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fingerprint Server Event Search Events API",
+    "version": "3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Auth-API-Key",
+      "value": "{{Auth-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get event by request ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fpjs.io/events/:request_id",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (requestId) of the identification event."
+              }
+            ]
+          },
+          "docs": "Get a detailed analysis of an individual identification event, including all Smart Signals enabled for your workspace."
+        },
+        {
+          "info": {
+            "name": "Update an event with a given request ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.fpjs.io/events/:request_id",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (requestId) of the identification event."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an event with a linkedId, one or more tags, or a suspect flag to support your decision-making and labeling workflows."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

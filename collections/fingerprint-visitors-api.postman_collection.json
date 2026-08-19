@@ -1,0 +1,521 @@
+{
+  "item": [
+    {
+      "id": "b69251b0-e802-49b9-8766-aac75192a15c",
+      "name": "Visitors",
+      "description": {
+        "content": "Get visit history and delete visitor data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ea90b9c2-7f59-4563-9f0b-b964ddde18e7",
+          "name": "Get visits by visitor ID",
+          "request": {
+            "name": "Get visits by visitor ID",
+            "description": {
+              "content": "Get the visit history for a single visitorId, with pagination and time-range filtering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "visitors",
+                ":visitor_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "request_id",
+                  "value": "<string>",
+                  "description": "Filter visits by a single requestId."
+                },
+                {
+                  "disabled": false,
+                  "key": "linked_id",
+                  "value": "<string>",
+                  "description": "Filter visits by linkedId."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limit the number of visits returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "pagination_key",
+                  "value": "<string>",
+                  "description": "Cursor used to fetch the next page of visits."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "visitor_id",
+                  "description": "(Required) Unique identifier of the visitor."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d0c70c8-e28d-4193-91cc-aabfde5ada75",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "visitors",
+                    ":visitor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "linked_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "visitor_id",
+                      "description": "(Required) Unique identifier of the visitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Auth-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"visitorId\": \"string\",\n  \"visits\": [\n    {\n      \"requestId\": \"string\",\n      \"incognito\": false,\n      \"linkedId\": \"string\",\n      \"timestamp\": 2556,\n      \"time\": \"2025-07-20T21:53:28.248Z\",\n      \"url\": \"string\",\n      \"ip\": \"string\",\n      \"confidence\": {\n        \"score\": 0.41758288160235046\n      },\n      \"visitorFound\": false\n    },\n    {\n      \"requestId\": \"string\",\n      \"incognito\": false,\n      \"linkedId\": \"string\",\n      \"timestamp\": 9154,\n      \"time\": \"2008-01-29T05:17:35.034Z\",\n      \"url\": \"string\",\n      \"ip\": \"string\",\n      \"confidence\": {\n        \"score\": 0.3720111327260146\n      },\n      \"visitorFound\": true\n    }\n  ],\n  \"lastTimestamp\": 8278,\n  \"paginationKey\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25ca35f6-6146-46f3-834a-c79616939bd1",
+              "name": "Forbidden - invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "visitors",
+                    ":visitor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "linked_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "visitor_id",
+                      "description": "(Required) Unique identifier of the visitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Auth-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1adcb810-0f5b-4bbe-8979-d60a0fd1a9c8",
+              "name": "Visitor not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "visitors",
+                    ":visitor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "linked_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "visitor_id",
+                      "description": "(Required) Unique identifier of the visitor."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Auth-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7f32935-6ce1-4bed-93d3-ef7c30a931fc",
+          "name": "Delete data by visitor ID",
+          "request": {
+            "name": "Delete data by visitor ID",
+            "description": {
+              "content": "Delete all data associated with the specified visitorId. Used for privacy and data-subject (GDPR/CCPA) deletion requests. The deletion is asynchronous and irreversible.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "visitors",
+                ":visitor_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "visitor_id",
+                  "description": "(Required) Unique identifier of the visitor whose data should be deleted."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a5d38ff-1a4b-4125-a6bc-22c43af6d9fb",
+              "name": "OK. Deletion request accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "visitors",
+                    ":visitor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "visitor_id",
+                      "description": "(Required) Unique identifier of the visitor whose data should be deleted."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Auth-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8a484a30-a0fd-4648-8ff2-da54431eb494",
+              "name": "Forbidden - invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "visitors",
+                    ":visitor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "visitor_id",
+                      "description": "(Required) Unique identifier of the visitor whose data should be deleted."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Auth-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65f20316-cfd4-461b-a8dc-9feca55eb7d9",
+              "name": "Visitor not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "visitors",
+                    ":visitor_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "visitor_id",
+                      "description": "(Required) Unique identifier of the visitor whose data should be deleted."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Auth-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fpjs.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Auth-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "54c14efb-7793-4180-981c-1b29af5aa21b",
+    "name": "Fingerprint Server Event Search Visitors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Fingerprint Server API lets you get, search, update, and delete identification Events and Visitors in a server environment. Each event carries device attributes and the enabled Smart Signals (bot, VPN, proxy, Tor, IP blocklist, tampering, virtual machine, incognito, emulator, root, jailbreak, Frida, cloned app, factory reset, velocity). Requests are authenticated with the `Auth-API-Key` header carrying your workspace Secret API Key. The API is served from regional hosts; use the host that matches your workspace region (Global, EU, or Asia). The product also exposes a Related Visitors endpoint and Webhooks that POST the same event payload to a configured endpoint.\n\nContact Support:\n Name: Fingerprint Support\n Email: support@fingerprint.com",
+      "type": "text/plain"
+    }
+  }
+}

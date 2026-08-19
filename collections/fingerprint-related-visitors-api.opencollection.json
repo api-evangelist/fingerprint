@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fingerprint Server Event Search Related Visitors API",
+    "version": "3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Auth-API-Key",
+      "value": "{{Auth-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Related Visitors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get related visitors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fpjs.io/related-visitors",
+            "params": [
+              {
+                "name": "visitor_id",
+                "value": "",
+                "type": "query",
+                "description": "The visitorId for which related visitors are requested."
+              }
+            ]
+          },
+          "docs": "Get a list of visitorIds that are likely to belong to the same person as the provided visitorId, across browsers and incognito sessions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

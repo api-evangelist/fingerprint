@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fingerprint Server Event Search API",
+    "version": "3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Auth-API-Key",
+      "value": "{{Auth-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Event Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get events via search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fpjs.io/events/search",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of events returned."
+              },
+              {
+                "name": "pagination_key",
+                "value": "",
+                "type": "query",
+                "description": "Cursor used to fetch the next page of results."
+              },
+              {
+                "name": "visitor_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter events by visitorId."
+              },
+              {
+                "name": "bot",
+                "value": "",
+                "type": "query",
+                "description": "Filter by bot detection result (good, bad, all, none)."
+              },
+              {
+                "name": "ip_address",
+                "value": "",
+                "type": "query",
+                "description": "Filter events by IP address or CIDR range."
+              },
+              {
+                "name": "linked_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter events by linkedId."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Filter events created after this Unix epoch time (ms)."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "Filter events created before this Unix epoch time (ms)."
+              },
+              {
+                "name": "reverse",
+                "value": "",
+                "type": "query",
+                "description": "Sort events from oldest to newest."
+              },
+              {
+                "name": "suspect",
+                "value": "",
+                "type": "query",
+                "description": "Filter events flagged as suspect."
+              },
+              {
+                "name": "vpn",
+                "value": "",
+                "type": "query",
+                "description": "Filter events where a VPN was detected."
+              },
+              {
+                "name": "virtual_machine",
+                "value": "",
+                "type": "query",
+                "description": "Filter events where a virtual machine was detected."
+              },
+              {
+                "name": "tampering",
+                "value": "",
+                "type": "query",
+                "description": "Filter events where request tampering was detected."
+              },
+              {
+                "name": "incognito",
+                "value": "",
+                "type": "query",
+                "description": "Filter events where incognito/private browsing was detected."
+              }
+            ]
+          },
+          "docs": "Search identification events for your workspace using a wide range of built-in filters, including visitorId, linkedId, bot, IP address, time range, suspect, and individual Smart Signal flags. Results are paginated with a cursor."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

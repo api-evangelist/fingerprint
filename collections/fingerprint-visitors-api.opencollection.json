@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fingerprint Server Event Search Visitors API",
+    "version": "3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Auth-API-Key",
+      "value": "{{Auth-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Visitors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get visits by visitor ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fpjs.io/visitors/:visitor_id",
+            "params": [
+              {
+                "name": "visitor_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the visitor."
+              },
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter visits by a single requestId."
+              },
+              {
+                "name": "linked_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter visits by linkedId."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of visits returned."
+              },
+              {
+                "name": "pagination_key",
+                "value": "",
+                "type": "query",
+                "description": "Cursor used to fetch the next page of visits."
+              }
+            ]
+          },
+          "docs": "Get the visit history for a single visitorId, with pagination and time-range filtering."
+        },
+        {
+          "info": {
+            "name": "Delete data by visitor ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.fpjs.io/visitors/:visitor_id",
+            "params": [
+              {
+                "name": "visitor_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the visitor whose data should be deleted."
+              }
+            ]
+          },
+          "docs": "Delete all data associated with the specified visitorId. Used for privacy and data-subject (GDPR/CCPA) deletion requests. The deletion is asynchronous and irreversible."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

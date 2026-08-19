@@ -1,0 +1,372 @@
+{
+  "item": [
+    {
+      "id": "d15975eb-af8f-445e-805d-96253612806e",
+      "name": "Event Search",
+      "description": {
+        "content": "Search identification events with filters.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "73619331-5caf-4cf1-ad6f-587beacc50e8",
+          "name": "Get events via search",
+          "request": {
+            "name": "Get events via search",
+            "description": {
+              "content": "Search identification events for your workspace using a wide range of built-in filters, including visitorId, linkedId, bot, IP address, time range, suspect, and individual Smart Signal flags. Results are paginated with a cursor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "(Required) Limit the number of events returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "pagination_key",
+                  "value": "<string>",
+                  "description": "Cursor used to fetch the next page of results."
+                },
+                {
+                  "disabled": false,
+                  "key": "visitor_id",
+                  "value": "<string>",
+                  "description": "Filter events by visitorId."
+                },
+                {
+                  "disabled": false,
+                  "key": "bot",
+                  "value": "<string>",
+                  "description": "Filter by bot detection result (good, bad, all, none)."
+                },
+                {
+                  "disabled": false,
+                  "key": "ip_address",
+                  "value": "<string>",
+                  "description": "Filter events by IP address or CIDR range."
+                },
+                {
+                  "disabled": false,
+                  "key": "linked_id",
+                  "value": "<string>",
+                  "description": "Filter events by linkedId."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<long>",
+                  "description": "Filter events created after this Unix epoch time (ms)."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<long>",
+                  "description": "Filter events created before this Unix epoch time (ms)."
+                },
+                {
+                  "disabled": false,
+                  "key": "reverse",
+                  "value": "<boolean>",
+                  "description": "Sort events from oldest to newest."
+                },
+                {
+                  "disabled": false,
+                  "key": "suspect",
+                  "value": "<boolean>",
+                  "description": "Filter events flagged as suspect."
+                },
+                {
+                  "disabled": false,
+                  "key": "vpn",
+                  "value": "<boolean>",
+                  "description": "Filter events where a VPN was detected."
+                },
+                {
+                  "disabled": false,
+                  "key": "virtual_machine",
+                  "value": "<boolean>",
+                  "description": "Filter events where a virtual machine was detected."
+                },
+                {
+                  "disabled": false,
+                  "key": "tampering",
+                  "value": "<boolean>",
+                  "description": "Filter events where request tampering was detected."
+                },
+                {
+                  "disabled": false,
+                  "key": "incognito",
+                  "value": "<boolean>",
+                  "description": "Filter events where incognito/private browsing was detected."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e145623-61bd-4c2a-8f08-9d4bd7f62d0f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visitor_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bot",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ip_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "linked_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "reverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "suspect",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "vpn",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "virtual_machine",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "tampering",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "incognito",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Auth-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"events\": [\n    {\n      \"products\": {\n        \"identification\": {\n          \"data\": {\n            \"visitorId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requestId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"linkedId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"confidence\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visitorFound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"incognito\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"browserDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"botd\": {\n          \"data\": {\n            \"bot\": {\n              \"result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        },\n        \"ipInfo\": {},\n        \"incognito\": {},\n        \"vpn\": {},\n        \"proxy\": {},\n        \"tor\": {},\n        \"tampering\": {},\n        \"virtualMachine\": {},\n        \"emulator\": {},\n        \"velocity\": {}\n      }\n    },\n    {\n      \"products\": {\n        \"identification\": {\n          \"data\": {\n            \"visitorId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requestId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"linkedId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"time\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"confidence\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"visitorFound\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"incognito\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"browserDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"botd\": {\n          \"data\": {\n            \"bot\": {\n              \"result\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        },\n        \"ipInfo\": {},\n        \"incognito\": {},\n        \"vpn\": {},\n        \"proxy\": {},\n        \"tor\": {},\n        \"tampering\": {},\n        \"virtualMachine\": {},\n        \"emulator\": {},\n        \"velocity\": {}\n      }\n    }\n  ],\n  \"paginationKey\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddc38523-9afe-4268-bb15-2d7818368fd4",
+              "name": "Forbidden - invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pagination_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visitor_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bot",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ip_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "linked_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "reverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "suspect",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "vpn",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "virtual_machine",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "tampering",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "incognito",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Auth-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fpjs.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Auth-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e8501d99-eca9-4363-8dae-161fc042d9f1",
+    "name": "Fingerprint Server Event Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Fingerprint Server API lets you get, search, update, and delete identification Events and Visitors in a server environment. Each event carries device attributes and the enabled Smart Signals (bot, VPN, proxy, Tor, IP blocklist, tampering, virtual machine, incognito, emulator, root, jailbreak, Frida, cloned app, factory reset, velocity). Requests are authenticated with the `Auth-API-Key` header carrying your workspace Secret API Key. The API is served from regional hosts; use the host that matches your workspace region (Global, EU, or Asia). The product also exposes a Related Visitors endpoint and Webhooks that POST the same event payload to a configured endpoint.\n\nContact Support:\n Name: Fingerprint Support\n Email: support@fingerprint.com",
+      "type": "text/plain"
+    }
+  }
+}
