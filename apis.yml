@@ -29,7 +29,7 @@ tags:
 - Identity
 created: '2026-06-25'
 modified: '2026-06-25'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: fingerprint:fingerprint-event-search-api
   name: Fingerprint Event Search API
