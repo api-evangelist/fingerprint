@@ -67,6 +67,8 @@ apis:
   humanURL: https://dev.fingerprint.com/reference/getevent
   baseURL: https://api.fpjs.io
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
