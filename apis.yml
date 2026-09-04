@@ -2,11 +2,10 @@ aid: fingerprint
 url: https://raw.githubusercontent.com/api-evangelist/fingerprint/refs/heads/main/apis.yml
 name: Fingerprint
 kind: company
-description: Fingerprint (formerly FingerprintJS) is a device-identification and fraud-prevention
-  platform. Its browser and mobile agents generate a stable visitorId, and the Server
-  API returns detailed identification events enriched with Smart Signals (bot, VPN,
-  proxy, tampering, emulator, and more) for account takeover, payment fraud, and
-  bot-mitigation use cases.
+description: Fingerprint (formerly FingerprintJS) is a device-identification and fraud-prevention platform. Its
+  browser and mobile agents generate a stable visitorId, and the Server API returns detailed identification events
+  enriched with Smart Signals (bot, VPN, proxy, tampering, emulator, and more) for account takeover, payment fraud,
+  and bot-mitigation use cases.
 deliveryModel:
   model: saas
   open_source: false
