@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Fingerprint Server Event Search API
-  description: The Fingerprint Server API lets you get, search, update, and delete identification Events and Visitors in a server environment. Each event carries device attributes and the enabled Smart Signals (bot, VPN, proxy, Tor, IP blocklist, tampering, virtual machine, incognito, emulator, root, jailbreak, Frida, cloned app, factory reset, velocity). Requests are authenticated with the `Auth-API-Key` header carrying your workspace Secret API Key. The API is served from regional hosts; use the host that matches your workspace region (Global, EU, or Asia). The product also exposes a Related Visitors endpoint and Webhooks that POST the same event payload to a configured endpoint.
+  description: The Fingerprint Server API lets you get, search, update, and delete identification Events and Visitors in a server environment.
   termsOfService: https://fingerprint.com/terms-conditions/
   contact:
     name: Fingerprint Support
@@ -127,105 +127,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
-            message:
-              type: string
-              description: Human-readable error message.
-    SearchEventsResponse:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventsGetResponse'
-        paginationKey:
-          type: string
-    Products:
-      type: object
-      description: Container for identification and Smart Signal product results.
-      properties:
-        identification:
-          $ref: '#/components/schemas/SignalResponseIdentification'
-        botd:
-          $ref: '#/components/schemas/SignalResponseBotd'
-        ipInfo:
-          type: object
-        incognito:
-          type: object
-        vpn:
-          type: object
-        proxy:
-          type: object
-        tor:
-          type: object
-        tampering:
-          type: object
-        virtualMachine:
-          type: object
-        emulator:
-          type: object
-        velocity:
-          type: object
-    BrowserDetails:
-      type: object
-      properties:
-        browserName:
-          type: string
-        browserMajorVersion:
-          type: string
-        browserFullVersion:
-          type: string
-        os:
-          type: string
-        osVersion:
-          type: string
-        device:
-          type: string
-        userAgent:
-          type: string
-    Confidence:
-      type: object
-      properties:
-        score:
-          type: number
-          format: float
-          minimum: 0
-          maximum: 1
-    EventsGetResponse:
-      type: object
-      properties:
-        products:
-          $ref: '#/components/schemas/Products'
-    SignalResponseIdentification:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Identification'
-    SignalResponseBotd:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            bot:
-              type: object
-              properties:
-                result:
-                  type: string
-                  enum:
-                  - notDetected
-                  - good
-                  - bad
     Identification:
       type: object
       properties:
@@ -256,6 +157,105 @@ components:
           type: boolean
         browserDetails:
           $ref: '#/components/schemas/BrowserDetails'
+    ErrorResponse:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
+            message:
+              type: string
+              description: Human-readable error message.
+    Confidence:
+      type: object
+      properties:
+        score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+    EventsGetResponse:
+      type: object
+      properties:
+        products:
+          $ref: '#/components/schemas/Products'
+    Products:
+      type: object
+      description: Container for identification and Smart Signal product results.
+      properties:
+        identification:
+          $ref: '#/components/schemas/SignalResponseIdentification'
+        botd:
+          $ref: '#/components/schemas/SignalResponseBotd'
+        ipInfo:
+          type: object
+        incognito:
+          type: object
+        vpn:
+          type: object
+        proxy:
+          type: object
+        tor:
+          type: object
+        tampering:
+          type: object
+        virtualMachine:
+          type: object
+        emulator:
+          type: object
+        velocity:
+          type: object
+    SignalResponseBotd:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            bot:
+              type: object
+              properties:
+                result:
+                  type: string
+                  enum:
+                  - notDetected
+                  - good
+                  - bad
+    SignalResponseIdentification:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Identification'
+    SearchEventsResponse:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventsGetResponse'
+        paginationKey:
+          type: string
+    BrowserDetails:
+      type: object
+      properties:
+        browserName:
+          type: string
+        browserMajorVersion:
+          type: string
+        browserFullVersion:
+          type: string
+        os:
+          type: string
+        osVersion:
+          type: string
+        device:
+          type: string
+        userAgent:
+          type: string
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

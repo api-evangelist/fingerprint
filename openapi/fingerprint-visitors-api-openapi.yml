@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Fingerprint Server Event Search Visitors API
-  description: The Fingerprint Server API lets you get, search, update, and delete identification Events and Visitors in a server environment. Each event carries device attributes and the enabled Smart Signals (bot, VPN, proxy, Tor, IP blocklist, tampering, virtual machine, incognito, emulator, root, jailbreak, Frida, cloned app, factory reset, velocity). Requests are authenticated with the `Auth-API-Key` header carrying your workspace Secret API Key. The API is served from regional hosts; use the host that matches your workspace region (Global, EU, or Asia). The product also exposes a Related Visitors endpoint and Webhooks that POST the same event payload to a configured endpoint.
+  title: Fingerprint Server Visitors API
+  description: The Fingerprint Server API lets you get, search, update, and delete identification Events and Visitors in a server environment.
   termsOfService: https://fingerprint.com/terms-conditions/
   contact:
     name: Fingerprint Support
@@ -108,20 +108,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Response:
-      type: object
-      properties:
-        visitorId:
-          type: string
-        visits:
-          type: array
-          items:
-            $ref: '#/components/schemas/Visit'
-        lastTimestamp:
-          type: integer
-          format: int64
-        paginationKey:
-          type: string
     Visit:
       type: object
       properties:
@@ -167,6 +153,20 @@ components:
             message:
               type: string
               description: Human-readable error message.
+    Response:
+      type: object
+      properties:
+        visitorId:
+          type: string
+        visits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Visit'
+        lastTimestamp:
+          type: integer
+          format: int64
+        paginationKey:
+          type: string
   securitySchemes:
     ApiKeyHeader:
       type: apiKey
