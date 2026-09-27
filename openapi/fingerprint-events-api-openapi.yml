@@ -93,6 +93,20 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
+            message:
+              type: string
+              description: Human-readable error message.
     Identification:
       type: object
       properties:
@@ -123,6 +137,11 @@ components:
           type: boolean
         browserDetails:
           $ref: '#/components/schemas/BrowserDetails'
+    EventsGetResponse:
+      type: object
+      properties:
+        products:
+          $ref: '#/components/schemas/Products'
     Confidence:
       type: object
       properties:
@@ -131,25 +150,21 @@ components:
           format: float
           minimum: 0
           maximum: 1
-    ErrorResponse:
+    SignalResponseBotd:
       type: object
-      required:
-      - error
       properties:
-        error:
+        data:
           type: object
           properties:
-            code:
-              type: string
-              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
-            message:
-              type: string
-              description: Human-readable error message.
-    EventsGetResponse:
-      type: object
-      properties:
-        products:
-          $ref: '#/components/schemas/Products'
+            bot:
+              type: object
+              properties:
+                result:
+                  type: string
+                  enum:
+                  - notDetected
+                  - good
+                  - bad
     Products:
       type: object
       description: Container for identification and Smart Signal product results.
@@ -176,36 +191,6 @@ components:
           type: object
         velocity:
           type: object
-    EventUpdateRequest:
-      type: object
-      properties:
-        linkedId:
-          type: string
-        tag:
-          type: object
-          additionalProperties: true
-        suspect:
-          type: boolean
-    SignalResponseBotd:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            bot:
-              type: object
-              properties:
-                result:
-                  type: string
-                  enum:
-                  - notDetected
-                  - good
-                  - bad
-    SignalResponseIdentification:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Identification'
     BrowserDetails:
       type: object
       properties:
@@ -223,6 +208,21 @@ components:
           type: string
         userAgent:
           type: string
+    EventUpdateRequest:
+      type: object
+      properties:
+        linkedId:
+          type: string
+        tag:
+          type: object
+          additionalProperties: true
+        suspect:
+          type: boolean
+    SignalResponseIdentification:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Identification'
   securitySchemes:
     ApiKeyHeader:
       type: apiKey
