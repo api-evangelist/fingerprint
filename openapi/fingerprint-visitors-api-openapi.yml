@@ -108,34 +108,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
-            message:
-              type: string
-              description: Human-readable error message.
-    Response:
-      type: object
-      properties:
-        visitorId:
-          type: string
-        visits:
-          type: array
-          items:
-            $ref: '#/components/schemas/Visit'
-        lastTimestamp:
-          type: integer
-          format: int64
-        paginationKey:
-          type: string
     Visit:
       type: object
       properties:
@@ -159,6 +131,20 @@ components:
           $ref: '#/components/schemas/Confidence'
         visitorFound:
           type: boolean
+    ErrorResponse:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
+            message:
+              type: string
+              description: Human-readable error message.
     Confidence:
       type: object
       properties:
@@ -167,6 +153,20 @@ components:
           format: float
           minimum: 0
           maximum: 1
+    Response:
+      type: object
+      properties:
+        visitorId:
+          type: string
+        visits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Visit'
+        lastTimestamp:
+          type: integer
+          format: int64
+        paginationKey:
+          type: string
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

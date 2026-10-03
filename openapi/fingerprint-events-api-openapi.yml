@@ -93,20 +93,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
-            message:
-              type: string
-              description: Human-readable error message.
     Identification:
       type: object
       properties:
@@ -137,19 +123,20 @@ components:
           type: boolean
         browserDetails:
           $ref: '#/components/schemas/BrowserDetails'
-    EventsGetResponse:
+    ErrorResponse:
       type: object
+      required:
+      - error
       properties:
-        products:
-          $ref: '#/components/schemas/Products'
-    Confidence:
-      type: object
-      properties:
-        score:
-          type: number
-          format: float
-          minimum: 0
-          maximum: 1
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
+            message:
+              type: string
+              description: Human-readable error message.
     SignalResponseBotd:
       type: object
       properties:
@@ -165,6 +152,29 @@ components:
                   - notDetected
                   - good
                   - bad
+    EventUpdateRequest:
+      type: object
+      properties:
+        linkedId:
+          type: string
+        tag:
+          type: object
+          additionalProperties: true
+        suspect:
+          type: boolean
+    EventsGetResponse:
+      type: object
+      properties:
+        products:
+          $ref: '#/components/schemas/Products'
+    Confidence:
+      type: object
+      properties:
+        score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
     Products:
       type: object
       description: Container for identification and Smart Signal product results.
@@ -208,16 +218,6 @@ components:
           type: string
         userAgent:
           type: string
-    EventUpdateRequest:
-      type: object
-      properties:
-        linkedId:
-          type: string
-        tag:
-          type: object
-          additionalProperties: true
-        suspect:
-          type: boolean
     SignalResponseIdentification:
       type: object
       properties:
