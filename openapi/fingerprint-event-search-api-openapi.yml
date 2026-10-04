@@ -127,6 +127,69 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
+            message:
+              type: string
+              description: Human-readable error message.
+    BrowserDetails:
+      type: object
+      properties:
+        browserName:
+          type: string
+        browserMajorVersion:
+          type: string
+        browserFullVersion:
+          type: string
+        os:
+          type: string
+        osVersion:
+          type: string
+        device:
+          type: string
+        userAgent:
+          type: string
+    SignalResponseBotd:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            bot:
+              type: object
+              properties:
+                result:
+                  type: string
+                  enum:
+                  - notDetected
+                  - good
+                  - bad
+    Confidence:
+      type: object
+      properties:
+        score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+    SearchEventsResponse:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventsGetResponse'
+        paginationKey:
+          type: string
     Identification:
       type: object
       properties:
@@ -157,57 +220,6 @@ components:
           type: boolean
         browserDetails:
           $ref: '#/components/schemas/BrowserDetails'
-    ErrorResponse:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
-            message:
-              type: string
-              description: Human-readable error message.
-    SignalResponseBotd:
-      type: object
-      properties:
-        data:
-          type: object
-          properties:
-            bot:
-              type: object
-              properties:
-                result:
-                  type: string
-                  enum:
-                  - notDetected
-                  - good
-                  - bad
-    SearchEventsResponse:
-      type: object
-      properties:
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventsGetResponse'
-        paginationKey:
-          type: string
-    EventsGetResponse:
-      type: object
-      properties:
-        products:
-          $ref: '#/components/schemas/Products'
-    Confidence:
-      type: object
-      properties:
-        score:
-          type: number
-          format: float
-          minimum: 0
-          maximum: 1
     Products:
       type: object
       description: Container for identification and Smart Signal product results.
@@ -234,23 +246,11 @@ components:
           type: object
         velocity:
           type: object
-    BrowserDetails:
+    EventsGetResponse:
       type: object
       properties:
-        browserName:
-          type: string
-        browserMajorVersion:
-          type: string
-        browserFullVersion:
-          type: string
-        os:
-          type: string
-        osVersion:
-          type: string
-        device:
-          type: string
-        userAgent:
-          type: string
+        products:
+          $ref: '#/components/schemas/Products'
     SignalResponseIdentification:
       type: object
       properties:

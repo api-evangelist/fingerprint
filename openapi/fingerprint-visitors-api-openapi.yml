@@ -108,6 +108,20 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
+            message:
+              type: string
+              description: Human-readable error message.
     Visit:
       type: object
       properties:
@@ -131,20 +145,6 @@ components:
           $ref: '#/components/schemas/Confidence'
         visitorFound:
           type: boolean
-    ErrorResponse:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code (e.g. TokenRequired, RequestNotFound).
-            message:
-              type: string
-              description: Human-readable error message.
     Confidence:
       type: object
       properties:
