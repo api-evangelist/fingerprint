@@ -29,6 +29,9 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fingerprint.png
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
 tags:
 - Device Identification
 - Fraud Prevention
@@ -171,6 +174,9 @@ apis:
   - type: Documentation
     url: https://dev.fingerprintjs.com/docs
 common:
+- type: CapabilityMap
+  url: capabilities/fingerprint-capability-edges.yml
+  name: Fingerprint Business Capability Map
 - type: AgenticAccess
   url: agentic-access/fingerprint-agentic-access.yml
 - type: TrustCenter
