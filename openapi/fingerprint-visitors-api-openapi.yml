@@ -122,6 +122,14 @@ components:
             message:
               type: string
               description: Human-readable error message.
+    Confidence:
+      type: object
+      properties:
+        score:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
     Visit:
       type: object
       properties:
@@ -145,14 +153,6 @@ components:
           $ref: '#/components/schemas/Confidence'
         visitorFound:
           type: boolean
-    Confidence:
-      type: object
-      properties:
-        score:
-          type: number
-          format: float
-          minimum: 0
-          maximum: 1
     Response:
       type: object
       properties:
