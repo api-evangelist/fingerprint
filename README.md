@@ -1,4 +1,4 @@
-# Fingerprint (fingerprint)
+# Fingerprint
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,175 +66,124 @@
 
 Fingerprint (formerly FingerprintJS) is a device-identification and fraud-prevention platform. Its browser and mobile agents generate a stable visitorId, and the Server API returns detailed identification events enriched with Smart Signals (bot, VPN, proxy, tampering, emulator, and more) for account takeover, payment fraud, and bot-mitigation use cases.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/fingerprint/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/fingerprint/refs/heads/main/apis.yml)
+**Areas:** Device Identification · Fraud Prevention · Bot Detection · Smart Signals · Identity
 
-## Tags
+## Fingerprint on APIs.io
 
-- Device Identification
-- Fraud Prevention
-- Bot Detection
-- Smart Signals
-- Identity
+Everything profiled for Fingerprint is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fingerprint/](https://apis.io/providers/fingerprint/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-25
-- **Modified:** 2026-06-25
+- [Fingerprint Event Search API](https://apis.io/apis/fingerprint/fingerprint-event-search-api/) — Search identification events with filters.
+- [Fingerprint Events API](https://apis.io/apis/fingerprint/fingerprint-events-api/) — Get and update individual identification events.
+- [Fingerprint Related Visitors API](https://apis.io/apis/fingerprint/fingerprint-related-visitors-api/) — Find visitorIds likely belonging to the same person.
+- [Fingerprint Visitors API](https://apis.io/apis/fingerprint/fingerprint-visitors-api/) — Get visit history and delete visitor data.
+- [FingerprintJS Pro](https://apis.io/apis/fingerprint/fingerprintjs-pro/) — Fraud detection API offering highly accurate browser fingerprinting
 
-## APIs
+### Published properties
 
-### Fingerprint Events API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Retrieve and update the complete identification event for a single requestId, including device attributes and all enabled Smart Signals. Authenticated with the Auth-API-Key header.
+#### Agentic access (1)
 
-- **Human URL:** [https://dev.fingerprint.com/reference/getevent](https://dev.fingerprint.com/reference/getevent)
-- **Base URL:** `https://api.fpjs.io`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Fingerprint Agentic Access](https://apis.io/agentic-access/fingerprint/fingerprint-agentic-access/)
 
-- Events
-- Identification
-- Smart Signals
+#### Collections (5)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://dev.fingerprint.com/docs/server-api)
-- [API Reference](https://dev.fingerprint.com/reference/getevent)
-- [OpenAPI](openapi/fingerprint-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fingerprint.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fingerprint.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Fingerprint Server API](https://apis.io/collections/fingerprint/open-fingerprint/)
+- [Fingerprint Server Event Search API](https://apis.io/collections/fingerprint/open-fingerprint-event-search-api/)
+- [Fingerprint Server Event Search Events API](https://apis.io/collections/fingerprint/open-fingerprint-events-api/)
+- [Fingerprint Server Event Search Related Visitors API](https://apis.io/collections/fingerprint/open-fingerprint-related-visitors-api/)
+- [Fingerprint Server Event Search Visitors API](https://apis.io/collections/fingerprint/open-fingerprint-visitors-api/)
 
-### Fingerprint Events Search API
+#### Security (3)
 
-Query identification events for a workspace using a wide range of filters - visitorId, linkedId, bot, IP address, time range, suspect, and individual Smart Signal flags - with cursor pagination.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://dev.fingerprint.com/reference/searchevents](https://dev.fingerprint.com/reference/searchevents)
-- **Base URL:** `https://api.fpjs.io`
+- [Fingerprint Authentication](https://apis.io/security/fingerprint/fingerprint-authentication/)
+- [Fingerprint Domain Security](https://apis.io/security/fingerprint/fingerprint-domain-security/)
+- [Fingerprint Trust Center](https://apis.io/security/fingerprint/fingerprint-trust-center/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Events
-- Search
-- Filtering
+Published plans, tiers and prices.
 
-#### Properties
+- [Fingerprint Plans Pricing](https://apis.io/plans/fingerprint/fingerprint-plans-pricing/)
 
-- [API Reference](https://dev.fingerprint.com/reference/searchevents)
-- [OpenAPI](openapi/fingerprint-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fingerprint.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fingerprint.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Fingerprint Visitors API
+Published request limits.
 
-Retrieve the visit history for a given visitorId with pagination and time-range filtering, and delete all data associated with a visitorId for privacy and data-subject requests.
+- [Fingerprint Rate Limits](https://apis.io/rate-limits/fingerprint/fingerprint-rate-limits/)
 
-- **Human URL:** [https://dev.fingerprint.com/reference/getvisits](https://dev.fingerprint.com/reference/getvisits)
-- **Base URL:** `https://api.fpjs.io`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Visitors
-- History
-- Identity
+- [Fingerprint Finops](https://apis.io/finops/fingerprint/fingerprint-finops/)
 
-#### Properties
+## Where to find this API
 
-- [API Reference](https://dev.fingerprint.com/reference/getvisits)
-- [OpenAPI](openapi/fingerprint-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fingerprint.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fingerprint.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Fingerprint Related Visitors API
-
-Find other visitorIds that likely belong to the same person across browsers and incognito sessions, supporting linked-identity and account-sharing detection.
-
-- **Human URL:** [https://dev.fingerprint.com/reference/getrelatedvisitors](https://dev.fingerprint.com/reference/getrelatedvisitors)
-- **Base URL:** `https://api.fpjs.io`
-
-#### Tags
-
-- Related Visitors
-- Linking
-- Identity
-
-#### Properties
-
-- [API Reference](https://dev.fingerprint.com/reference/getrelatedvisitors)
-- [OpenAPI](openapi/fingerprint-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fingerprint.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fingerprint.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Fingerprint Smart Signals API
-
-Risk signals returned inside identification events - bot detection, VPN, proxy, Tor, IP blocklist, tampering, virtual machine, incognito, emulator, root, jailbreak, Frida, cloned app, factory reset, and velocity - for fraud and abuse decisioning.
-
-- **Human URL:** [https://dev.fingerprint.com/docs/smart-signals-overview](https://dev.fingerprint.com/docs/smart-signals-overview)
-- **Base URL:** `https://api.fpjs.io`
-
-#### Tags
-
-- Smart Signals
-- Bot Detection
-- VPN
-
-#### Properties
-
-- [Documentation](https://dev.fingerprint.com/docs/smart-signals-overview)
-- [OpenAPI](openapi/fingerprint-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fingerprint.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fingerprint.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Fingerprint Webhooks
-
-Receive identification events at a configured HTTPS endpoint as they happen, carrying the same payload as the Events API for asynchronous server-side processing.
-
-- **Human URL:** [https://dev.fingerprint.com/docs/webhooks](https://dev.fingerprint.com/docs/webhooks)
-- **Base URL:** `https://api.fpjs.io`
-
-#### Tags
-
-- Webhooks
-- Events
-- Streaming
-
-#### Properties
-
-- [Documentation](https://dev.fingerprint.com/docs/webhooks)
-- [OpenAPI](openapi/fingerprint-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fingerprint.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fingerprint.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Fingerprint Sealed Results
-
-Decrypt sealed identification results delivered directly to the client and forwarded to your server, eliminating an extra Server API round-trip while keeping the full event payload server-validated.
-
-- **Human URL:** [https://dev.fingerprint.com/docs/sealed-client-results](https://dev.fingerprint.com/docs/sealed-client-results)
-- **Base URL:** `https://api.fpjs.io`
-
-#### Tags
-
-- Sealed Results
-- Encryption
-- Identification
-
-#### Properties
-
-- [Documentation](https://dev.fingerprint.com/docs/sealed-client-results)
-- [OpenAPI](openapi/fingerprint-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/fingerprint.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/fingerprint.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/fingerprintjs)
-- [LinkedIn](https://www.linkedin.com/company/fingerprintjs)
 - [Website](https://fingerprint.com)
 - [Documentation](https://dev.fingerprint.com/docs)
-- [Plans](plans/fingerprint-plans-pricing.yml)
-- [Rate Limits](rate-limits/fingerprint-rate-limits.yml)
-- [Fin Ops](finops/fingerprint-finops.yml)
+- [Blog](https://fingerprint.com/rss.xml)
+- [GitHub](https://github.com/fingerprintjs)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 29.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 49.3 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 15.8 |
+
+**Agent readiness 23.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fingerprint/](https://apis.io/providers/fingerprint/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Fingerprint: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fingerprint/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
